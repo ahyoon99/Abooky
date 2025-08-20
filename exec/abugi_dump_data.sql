@@ -1,39 +1,43 @@
 -- 로컬 DB 초기화 및 덤프 데이터 로드 스크립트
--- 사용법: mysql -u ssafy -p autobiography_db < reset_and_load_data.sql
+-- 사용법: mysql -u ssafy -p autobiography_db < abugi_dump_data.sql
+
+-- drop database autobiography_db;
+-- create database autobiography_db;
+-- use autobiography_db;
 
 SET foreign_key_checks = 0;
 SET autocommit = 0;
 
 -- 1. 기존 데이터 완전 삭제 (순서 중요: 외래키 관계를 고려하여 역순으로 삭제)
-TRUNCATE TABLE community_book_rating;
-TRUNCATE TABLE community_book_comment;
-TRUNCATE TABLE community_episode;
-TRUNCATE TABLE community_book_tags;
-TRUNCATE TABLE community_book_like;
-TRUNCATE TABLE community_book_bookmark;
-TRUNCATE TABLE community_book;
+-- TRUNCATE TABLE community_book_rating;
+-- TRUNCATE TABLE community_book_comment;
+-- TRUNCATE TABLE community_episode;
+-- TRUNCATE TABLE community_book_tags;
+-- TRUNCATE TABLE community_book_like;
+-- TRUNCATE TABLE community_book_bookmark;
+-- TRUNCATE TABLE community_book;
 
-TRUNCATE TABLE group_episode;
-TRUNCATE TABLE group_book_tags;
-TRUNCATE TABLE group_book_comment;
-TRUNCATE TABLE group_book;
+-- TRUNCATE TABLE group_episode;
+-- TRUNCATE TABLE group_book_tags;
+-- TRUNCATE TABLE group_book_comment;
+-- TRUNCATE TABLE group_book;
 
-TRUNCATE TABLE episode;
-TRUNCATE TABLE book_tags;
-TRUNCATE TABLE book_like;
-TRUNCATE TABLE rating;
-TRUNCATE TABLE book;
+-- TRUNCATE TABLE episode;
+-- TRUNCATE TABLE book_tags;
+-- TRUNCATE TABLE book_like;
+-- TRUNCATE TABLE rating;
+-- TRUNCATE TABLE book;
 
-TRUNCATE TABLE group_member;
-TRUNCATE TABLE group_apply;
-TRUNCATE TABLE `group`;
+-- TRUNCATE TABLE group_member;
+-- TRUNCATE TABLE group_apply;
+-- TRUNCATE TABLE `group`;
 
-TRUNCATE TABLE member;
+-- TRUNCATE TABLE member;
 
 -- 기본 데이터도 초기화 (필요시)
-TRUNCATE TABLE book_category;
-TRUNCATE TABLE tag;
-TRUNCATE TABLE chapter;
+-- TRUNCATE TABLE book_category;
+-- TRUNCATE TABLE tag;
+-- TRUNCATE TABLE chapter;
 
 -- 데이터베이스 인코딩을 UTF8MB4로 변경
 ALTER DATABASE autobiography_db CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
@@ -64,35 +68,37 @@ ALTER TABLE community_book_comment AUTO_INCREMENT = 1;
 ALTER TABLE book_category AUTO_INCREMENT = 1;
 ALTER TABLE tag AUTO_INCREMENT = 1;
 
+
+
 -- 3. 덤프 데이터 삽입 시작
 -- 책 카테고리 데이터
-INSERT INTO book_category (book_category_id, category_name) VALUES
-(1, '성장기'),
-(2, '사회활동'),
-(3, '가족이야기'),
-(4, '여행기'),
-(5, '도전기'),
-(6, '인생성찰'),
-(7, '직업이야기'),
-(8, '취미생활');
+INSERT INTO book_category (category_name) VALUES
+('성장기'),
+('사회활동'),
+('가족이야기'),
+('여행기'),
+('도전기'),
+('인생성찰'),
+('직업이야기'),
+('취미생활');
 
 -- 태그 데이터
-INSERT INTO tag (tag_id, tag_name) VALUES
-(1, '감동적인'),
-(2, '유머러스한'),
-(3, '진솔한'),
-(4, '교훈적인'),
-(5, '도전적인'),
-(6, '따뜻한'),
-(7, '성찰적인'),
-(8, '모험적인'),
-(9, '가족'),
-(10, '우정'),
-(11, '사랑'),
-(12, '성장'),
-(13, '극복'),
-(14, '꿈'),
-(15, '희망');
+INSERT INTO tag (tag_name) VALUES
+('감동적인'),
+('유머러스한'),
+('진솔한'),
+('교훈적인'),
+('도전적인'),
+('따뜻한'),
+('성찰적인'),
+('모험적인'),
+('가족'),
+('우정'),
+('사랑'),
+('성장'),
+('극복'),
+('꿈'),
+('희망');
 
 -- 챕터 데이터 (기본 5개 챕터)
 -- INSERT INTO chapter (chapter_id, chapter_name, chapter_order, description, created_at) VALUES
@@ -1000,5 +1006,10 @@ SELECT 'Community Book Tags', COUNT(*) FROM community_book_tags;
 SET foreign_key_checks = 1;
 SET autocommit = 1;
 
-SELECT '데이터 초기화 및 기본 데이터 삽입이 완료되었습니다.' as 'Status';
-SELECT 'test_data_dump.sql의 그룹 데이터부터 실행하세요.' as 'Next Step';
+SET FOREIGN_KEY_CHECKS = 0;
+
+TRUNCATE followup_question;
+TRUNCATE chapter_template;
+TRUNCATE chapter;
+
+SET FOREIGN_KEY_CHECKS = 1;
