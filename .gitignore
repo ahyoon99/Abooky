@@ -323,6 +323,8 @@ docker-compose.*.local.yml
 exec/execfile.md
 autobiography/livekit.yaml
 autobiography/compose.yaml
+autobiography/src/main/resources/application.properties
+autobiography/out/production/resources/application.properties
 
 # ---------- Github 코드 반출을 위한 대용량 파일 ----------
 mybook/public/3D/hanok_0729_1755.glb
