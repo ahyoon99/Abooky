@@ -317,3 +317,9 @@ docker-compose.*.local.yml
 *.local.yaml
 *secret*.yml
 *secret*.yaml
+
+
+# ---------- Github 코드 반출을 위한 민감 정보 파일 ----------
+exec/execfile.md
+autobiography/livekit.yaml
+autobiography/compose.yaml
